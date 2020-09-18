@@ -92,6 +92,7 @@ MIT
 MIT
 
 @flywine93/ngx-dyncmp
+MIT
 
 core-js
 MIT
