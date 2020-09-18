@@ -1,8 +1,29 @@
 {
   "name": "@flywine93/ngx-dyncmp",
-  "version": "0.0.1",
+  "version": "9.0.5",
   "peerDependencies": {
     "@angular/common": "*",
     "@angular/core": "*"
-  }
+  },
+  "description": "A lightweight dynamic component directive with full life-cycle support for inputs and outputs.",
+  "main": "karma.conf.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/93Alliance/ngx-dyncmp.git"
+  },
+  "keywords": [
+    "angular",
+    "angular dynamic component",
+    "dynamic component directive",
+    "dynamic component"
+  ],
+  "author": "flywine",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/93Alliance/ngx-dyncmp/issues"
+  },
+  "homepage": "https://github.com/93Alliance/ngx-dyncmp#readme"
 }

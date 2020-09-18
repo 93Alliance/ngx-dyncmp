@@ -1,27 +1,147 @@
 # NgxDyncmp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
+[![npm](https://img.shields.io/npm/dt/@flywine93/ngx-dyncmp.svg)]()
+[![npm](https://img.shields.io/npm/l/@flywine93/ngx-dyncmp.svg)]()
 
-## Development server
+A lightweight dynamic component directive with full life-cycle support for inputs and outputs.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+| Angular | ngx-dyncmp| NPM package |
+|  :---:  |   :---:   |   :---:     |
+| 9.x.x   |   9.x.x   | @flywine93/ngx-dyncmp@^9.0.0 |
 
-## Code scaffolding
+## Demo
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+[dynamic component demo online](https://93alliance.github.io/ngx-dyncmp/)
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+npm install @flywine93/ngx-dyncmp --save
+```
 
-## Running unit tests
+## Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Lightweight
+- Data synchronization
+- A single input attribute triggers update
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Usage
 
-## Further help
+Import `NgxDyncmpModule` where you need to render dynamic components:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```typescript
+import { NgxDyncmpModule } from '@flywine93/ngx-dyncmp';
+
+@NgModule({
+  imports: [NgxDyncmpModule],
+})
+export class MyModule {}
+```
+
+### ngxDyncCmp Directive
+
+The following example will dynamically create a Todo component.
+
+```html
+<ng-container *ngxDyncCmp="component"></ng-container>
+ <!-- or -->
+ <!-- <ng-container [ngxDyncCmp]="component"></ng-container> -->
+```
+
+```typescript
+export class AppComponent {
+  component = TotoComponent;
+  // ...
+}
+```
+
+### inputs Property
+
+If the dynamic component has Input properties, you can bind them with the `inputs` property.
+
+`todo component`
+```html
+<div>
+    <mat-checkbox [(ngModel)]="todo.checked" (change)="change($event)">{{todo.text}}</mat-checkbox>
+</div>
+```
+```typescript
+export class TotoComponent {
+  @Input() todo: {checked: boolean, text: string};
+}
+```
+
+`app component`
+```html
+<ng-container
+    [ngxDyncCmp]="component"
+    [inputs]="todoInputs">
+</ng-container>
+```
+
+```typescript
+export class AppComponent {
+  component = TotoComponent;
+  todoInputs = {
+    todo: {
+      checked: false,
+      text: 'Do Homework'
+    }
+  };
+}
+```
+- The todo within this todoInputs is the name of TotoComponent's Input property.
+- When a deep copy of the todo value within todoInputs occurs, the todo value within TotoComponent will be changed.
+
+### outputs Property
+
+When dynamic components have output properties inside, you can bind them using the `outputs` property.
+
+`todo component`
+```html
+<div>
+    <mat-checkbox [(ngModel)]="todo.checked" (change)="change($event)">{{todo.text}}</mat-checkbox>
+</div>
+```
+```typescript
+export class TotoComponent {
+  @Input() todo: {checked: boolean, text: string};
+  @Output() selected = new EventEmitter<{checked: boolean, text: string}>();
+
+  change(event: MatCheckboxChange): void {
+    this.selected.emit(this.todo);
+  }
+}
+```
+
+`app component`
+```html
+<ng-container
+    [ngxDyncCmp]="component"
+    [inputs]="todoInputs"
+    [outputs]="todoOutputs">
+</ng-container>
+```
+
+```typescript
+export class AppComponent {
+  component = TotoComponent;
+  todoInputs = {
+    todo: {
+      checked: false,
+      text: 'Do Homework'
+    }
+  };
+
+  todosOutputs = {
+    selected: (e: any) => {
+      console.log(e)
+    }
+  };
+}
+```
+
+## License
+
+The MIT License (see the [LICENSE](https://github.com/93Alliance/ngx-DYNCMP/blob/master/LICENSE) file for the full text)

@@ -19,7 +19,7 @@ export class NgxDyncmpDirective implements OnInit, OnDestroy, OnChanges {
 
   private cmpRef: ComponentRef<any>;
   private initFlag = false;
-  private inputsCache = {};
+  // private inputsCache = {};
 
   constructor(
     private vf: ViewContainerRef,
@@ -28,11 +28,11 @@ export class NgxDyncmpDirective implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit(): void {
     this.initFlag = true; // 是否初始化了的标志
-    this.setInputsChanges();
 
     if (this.dyncCmp) {
       const cmpFactory = this.cfr.resolveComponentFactory(this.dyncCmp);
       this.cmpRef = this.vf.createComponent(cmpFactory);
+      this.setInputsChanges();
       this.initInputs();
       this.initOutputs();
     }
@@ -55,10 +55,11 @@ export class NgxDyncmpDirective implements OnInit, OnDestroy, OnChanges {
 
   private initInputs(): void {
     if (!this.inputs) {return; }
+
     for (const item of Object.entries(this.inputs)) {
       const key = item[0];
       const value = item[1];
-      this.inputsCache[key] = value;
+      this.cmpRef.instance[key] = value;
     }
   }
 
@@ -75,22 +76,20 @@ export class NgxDyncmpDirective implements OnInit, OnDestroy, OnChanges {
 
   private setInputsChanges(): void {
     if (!this.inputs) { return; }
-
     for (const item of Object.entries(this.inputs)) {
       const key = item[0];
       const value = item[1];
-      this.inputsCache[key] = value;
+      this.cmpRef.instance[key] = value;
     }
 
-    for (const item of Object.entries(this.inputsCache)) {
+    for (const item of Object.entries(this.inputs)) {
       const key = item[0];
-      Object.defineProperty(this.inputsCache, key, {
+      Object.defineProperty(this.inputs, key, {
         get: () => {
-          return this.inputs[key];
+          return this.cmpRef.instance[key];
         },
         set: (newValue) => {
-          this.inputs[key] = newValue;
-          this.cmpRef.instance[key] = this.inputs[key];
+          this.cmpRef.instance[key] = newValue;
         },
         configurable: true
       });

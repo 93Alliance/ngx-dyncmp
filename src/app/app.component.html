@@ -29,17 +29,27 @@
     <div>
       <p>Sync: </p>
       <p>{{todos | json}}</p>
-      <p>OnSlected Play Game: </p>
+      <p>OnSlected: </p>
       <p>{{todoChanges | json}}</p>
     </div>
   </mat-tab>
   <mat-tab label="Demo 3">
-    <h3>Nest Component</h3>
+    <h3>Dynamic Create Component</h3>
     <button mat-raised-button color="primary" (click)="create()">Manually Create</button>
     <div class="todo">
       <ng-template #area1></ng-template>
     </div>
   </mat-tab>
+
+  <mat-tab label="Demo 4">
+    <h3>Dynamic Create Component</h3>
+    <button mat-raised-button color="primary" (click)="update()">Update Data</button>
+    <div class="todo">
+      <ng-container [ngxDyncCmp]="component2" [inputs]="todoInputs2"></ng-container>
+    </div>
+  </mat-tab>
+
+
 </mat-tab-group>
 
 <router-outlet></router-outlet>

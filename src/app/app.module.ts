@@ -12,12 +12,14 @@ import { TotoComponent } from './toto/toto.component';
 import { FormsModule } from '@angular/forms';
 import { NestComponent } from './nest/nest.component';
 import { MatButtonModule } from '@angular/material/button';
+import { Todo2Component } from './todo2/todo2.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TotoComponent,
-    NestComponent
+    NestComponent,
+    Todo2Component
   ],
   imports: [
     CommonModule,
