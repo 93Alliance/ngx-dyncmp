@@ -91,7 +91,6 @@ export class NgxDyncmpDirective implements OnInit, OnDestroy, OnChanges {
         set: (newValue) => {
           this.inputs[key] = newValue;
           this.cmpRef.instance[key] = this.inputs[key];
-          console.log('set: ', newValue);
         },
         configurable: true
       });
