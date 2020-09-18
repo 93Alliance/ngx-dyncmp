@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-dyncmp": [
+        "dist/ngx-dyncmp/ngx-dyncmp",
+        "dist/ngx-dyncmp"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

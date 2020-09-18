@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'ngx-dyncmp'`, () => {
+  it(`should have as title 'ngx-dyncmp-lib'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ngx-dyncmp');
+    expect(app.title).toEqual('ngx-dyncmp-lib');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('ngx-dyncmp app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('ngx-dyncmp-lib app is running!');
   });
 });
