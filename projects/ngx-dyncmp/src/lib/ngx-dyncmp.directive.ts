@@ -33,7 +33,6 @@ export class NgxDyncmpDirective implements OnInit, OnDestroy, OnChanges {
       const cmpFactory = this.cfr.resolveComponentFactory(this.dyncCmp);
       this.cmpRef = this.vf.createComponent(cmpFactory);
       this.setInputsChanges();
-      this.initInputs();
       this.initOutputs();
     }
   }
@@ -76,11 +75,7 @@ export class NgxDyncmpDirective implements OnInit, OnDestroy, OnChanges {
 
   private setInputsChanges(): void {
     if (!this.inputs) { return; }
-    for (const item of Object.entries(this.inputs)) {
-      const key = item[0];
-      const value = item[1];
-      this.cmpRef.instance[key] = value;
-    }
+    this.initInputs();
 
     for (const item of Object.entries(this.inputs)) {
       const key = item[0];

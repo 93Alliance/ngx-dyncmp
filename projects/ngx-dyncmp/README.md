@@ -2,8 +2,11 @@
 
 [![npm](https://img.shields.io/npm/dt/@flywine93/ngx-dyncmp.svg)]()
 [![npm](https://img.shields.io/npm/l/@flywine93/ngx-dyncmp.svg)]()
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
 A lightweight dynamic component directive with full life-cycle support for inputs and outputs.
+
+[![NPM](https://nodei.co/npm/@flywine93/ngx-dyncmp.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/@flywine93/ngx-dyncmp/)
 
 | Angular | ngx-dyncmp| NPM package |
 |  :---:  |   :---:   |   :---:     |
@@ -12,6 +15,8 @@ A lightweight dynamic component directive with full life-cycle support for input
 ## Demo
 
 [dynamic component demo online](https://93alliance.github.io/ngx-dyncmp/)
+
+[stackblitz demo](https://stackblitz.com/edit/angular-ngx-dyncmp-demo?file=src/app/app.component.ts)
 
 ## Installation
 
